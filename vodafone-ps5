@@ -16,7 +16,7 @@ def sendEmail(login, password):
     smtpObj.quit()
 
 
-def ps5():
+def ps5check():
     getPage = requests.get("https://www.vodafone.cz/domaci-zabava/sony-playstation-5/")
     getPage.raise_for_status()
     soup = bs4.BeautifulSoup(getPage.text, "html.parser")
