@@ -1,0 +1,33 @@
+import bs4
+import requests
+import smtplib
+import schedule
+import re
+import time
+
+
+def sendEmail(login, password):
+    smtpObj = smtplib.SMTP("smtp.gmail.com", 587)
+    smtpObj.ehlo()
+    smtpObj.starttls()
+    smtpObj.login(login, password)
+    body = "Subject: PS5\nHurry, PS5 is in stock at Vodafone!"
+    smtpObj.sendmail(login, login, body)
+    smtpObj.quit()
+
+
+def ps5():
+    getPage = requests.get("https://www.vodafone.cz/domaci-zabava/sony-playstation-5/")
+    getPage.raise_for_status()
+    soup = bs4.BeautifulSoup(getPage.text, "html.parser")
+    availability = re.compile(r"Skladem k odeslání")
+    mo = availability.search(str(soup))
+    if mo:
+        sendEmail("your_email@gmail.com", "your_pasword")
+
+
+schedule.every(1).minutes.do(ps5)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
