@@ -24,6 +24,7 @@ def ps5check():
     mo = availability.search(str(soup))
     if mo:
         sendEmail("your_email@gmail.com", "your_pasword")
+        exit()
 
 
 if __name__=='__main__':
