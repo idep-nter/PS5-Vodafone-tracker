@@ -27,7 +27,7 @@ def ps5check():
         exit()
 
 
-if __name__=='__main__':
+if __name__ == "__main__":
     schedule.every(1).minutes.do(ps5check)
 
 while True:
