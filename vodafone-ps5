@@ -28,7 +28,7 @@ def ps5check():
 
 
 if __name__=='__main__':
-    schedule.every(1).minutes.do(ps5)
+    schedule.every(1).minutes.do(ps5check)
 
 while True:
     schedule.run_pending()
